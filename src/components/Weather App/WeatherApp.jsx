@@ -11,11 +11,24 @@ import humidity_icon from "../Assets/humidity.png"
 
 
 const WeatherApp = () => {
+    const api_key = "8af57fa75f00d26247977592083a4100"
+
+    const search = () => {
+        // getting the input from the search bar
+        const element = document.getElementByClassName('cityInput')
+        let city = element[0].value
+        if (city === ""){
+            return 0
+        }
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`
+        // element[0] because there is only one element with this class
+        // if we were searching by ID there wouldn't be any need of indexing [0]
+    }
   return (
     <div className='container'>
         <div className="top-bar">
             <input type="text" className="cityInput" placeholder='search'/>
-            <div className="search-icon">
+            <div className="search-icon" onClick={()=>{search()}}>
                 <img src={search_icon} alt="" />
             </div>
         </div>
