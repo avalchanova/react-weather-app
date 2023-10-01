@@ -39,9 +39,29 @@ const WeatherApp = () => {
         location[0].innerHTML = data.name;
         console.log(city);
     
-        if (data.weather[0].icon===)
+        if (data.weather[0].icon==="01d" || data.weather[0].icon==="01n"){
         // using weather[0] because the weather holds an array and inside it there is only one object so we have to use index to access it
-    }
+            setWicon(clear_icon)
+        } else if (data.weather[0].icon==="02d" || data.weather[0].icon==="02n"){
+            setWicon(cloud_icon)
+        } else if (data.weather[0].icon==="03d" || data.weather[0].icon==="03n"){
+            setWicon(drizzle_icon)
+        } else if (data.weather[0].icon==="04d" || data.weather[0].icon==="04n"){
+            setWicon(drizzle_icon)
+        } else if (data.weather[0].icon==="09d" || data.weather[0].icon==="09n"){
+            setWicon(rain_icon)
+        } else if (data.weather[0].icon==="10d" || data.weather[0].icon==="10n"){
+            setWicon(rain_icon)
+        } else if (data.weather[0].icon==="13d" || data.weather[0].icon==="13n"){
+            setWicon(snow_icon)
+        } else {
+            setWicon(clear_icon)
+        }
+        // todo: icons can use a little more effort
+
+
+        }
+
   return (
     <div className='container'>
         <div className="top-bar">
@@ -51,7 +71,7 @@ const WeatherApp = () => {
             </div>
         </div>
         <div className="weather-image">
-            <img src={cloud_icon} alt="" />
+            <img src={wicon} alt="" />
         </div>
         <div className="weather-temperature">24°C</div>
         <div className="weather-location">London</div>
