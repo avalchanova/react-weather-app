@@ -13,16 +13,31 @@ import humidity_icon from "../Assets/humidity.png"
 const WeatherApp = () => {
     const api_key = "8af57fa75f00d26247977592083a4100"
 
-    const search = () => {
+    const search = async() => {
         // getting the input from the search bar
         const element = document.getElementByClassName('cityInput')
         let city = element[0].value
         if (city === ""){
             return 0
         }
+        // if the search input is not an empty string, we fetch the data from the api
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`
         // element[0] because there is only one element with this class
         // if we were searching by ID there wouldn't be any need of indexing [0]
+        
+        let response = await fetch(url)
+        let data = await response.json()
+        const humidity = document.getElementByClassName('humidity-percentage')
+        const wind = document.getElementByClassName('wind-rate')
+        const temperature = document.getElementsByClassName('weather-temperature')
+        const location = document.getElementsByClassName('weather-location')
+    
+        humidity[0].innerHTML = data.main.humidity;
+        wind[0].innerHTML = data.wind.speed;
+        temperature[0].innerHTML = data.main.temp;
+        location[0].innerHTML = data.name
+    
+    
     }
   return (
     <div className='container'>
@@ -48,7 +63,7 @@ const WeatherApp = () => {
             <div className="element">
                 <img src={wind_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="wind-speed">18km/h</div>
+                    <div className="wind-rate">18km/h</div>
                     <div className="text">Wind speed</div>
                 </div>
             </div>
