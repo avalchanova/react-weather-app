@@ -58,6 +58,9 @@ const WeatherApp = () => {
             setWicon(clear_icon)
         }
         // todo: icons can use a little more effort
+        /* todo: Deploying: firebase
+        Changing unit from metric to US 
+        Error handling for not existing cities */
 
 
         }
